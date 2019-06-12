@@ -14,6 +14,7 @@ Subset data
 -----------
 
 ``` r
+iris$name <- rownames(iris)
 iqr_constant <- 1.5 # see ?geom_boxplot
 iris_subset <- iris %>% 
   group_by(Species) %>% 
@@ -35,7 +36,7 @@ ggplot(iris, aes(x=Species, y=Sepal.Width)) +
     geom_label_repel(
       data=iris_subset, 
       aes(x=Species, y=Sepal.Width), 
-      label=rownames(iris_subset), 
+      label=iris_subset$name, 
       inherit.aes=F
     ) + 
     theme_light()
