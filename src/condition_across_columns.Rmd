@@ -1,0 +1,24 @@
+---
+title: "Condition on multiple columns"
+output: rmarkdown::github_document
+---
+
+## Load libraries
+
+```{r, message=FALSE}
+library(dplyr)
+```
+
+## Apply condition
+
+This will apply a given condition `< 0.3` on the columns `2,3,4` of `iris` and, if **any** column (`> 0`) passes the condition, `has_below_val` will be set to `TRUE`, otherwise it will be `FALSE`. Customize as needed.
+```{r}
+iris <- as_tibble(iris)
+iris %>% mutate(
+  has_below_val = ifelse(
+    rowSums(iris[2:4] < 0.3) > 0, 
+    T, 
+    F
+  )
+)
+```
